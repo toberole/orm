@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zhouwei.anything.activity.MainActivity">
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="add" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#00FF00"
+        android:gravity="center"
+        android:text="delete" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#0000FF"
+        android:gravity="center"
+        android:text="update" />
+
+    <Button
+        android:id="@+id/get"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#02F0F0"
+        android:gravity="center"
+        android:text="get" />
+
+    <Button
+        android:id="@+id/getPart"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#029060"
+        android:gravity="center"
+        android:text="getPart" />
+
+    <Button
+        android:id="@+id/saveLog"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="saveLog" />
+
+    <Button
+        android:id="@+id/showLog"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#120560"
+        android:gravity="center"
+        android:text="showLog" />
+
+    <Button
+        android:id="@+id/deleteLog"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#42F580"
+        android:gravity="center"
+        android:text="deleteLog" />
+
+</LinearLayout>
