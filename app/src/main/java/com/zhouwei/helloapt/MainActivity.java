@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.zhouwei.helloapt.bean.APPLog;
 import com.zhouwei.helloapt.bean.Student;
-import com.zhouwei.helloapt.util.DaoHelper;
+import com.zhouwei.helloapt.db.DaoHelper;
 
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             appLog.setThread(Thread.currentThread().getName());
             DaoHelper.getInstance().save(appLog);
         } else if (v.getId() == R.id.showLog) {
-            List<APPLog> appLogs = DaoHelper.getInstance().get(APPLog.class, null, null, null, null, null);
+            List<APPLog> appLogs = DaoHelper.getInstance().get(APPLog.class);
             if (appLogs != null) {
                 for (int i = 0; i < appLogs.size(); i++) {
                     Log.i("AAAA", appLogs.get(i).toString());
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             DaoHelper.getInstance().save(student);
         } else if (v.getId() == R.id.get) {
-            List<Student> students = DaoHelper.getInstance().get(Student.class, null, null, null, null, null);
+            List<Student> students = DaoHelper.getInstance().get(Student.class);
             if (students != null) {
                 for (int i = 0; i < students.size(); i++) {
                     Log.i("AAAA", students.get(i).toString());

@@ -34,11 +34,11 @@ public class DIProcessor extends AbstractProcessor {
     }
 
     /**
-     * public final class DIMainActivity extends MainActivity {
-     * public static void bindView(MainActivity activity) {
-     * activity.tv = (android.widget.TextView) activity.findViewById(R.id.tv);
-     * }
-     * }
+     *      public final class DIMainActivity extends MainActivity {
+     *          public static void bindView(MainActivity activity) {
+     *              activity.tv = (android.widget.TextView) activity.findViewById(R.id.tv);
+     *          }
+     *      }
      *
      * @param set
      * @param roundEnvironment

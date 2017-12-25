@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
  * Created by zhouwei on 2017/12/22.
  */
 
-public class Saveable {
+public abstract class Saveable {
     // save 回调
     public void save(ContentValues values) {
         Field[] fields = getClass().getDeclaredFields();
@@ -29,8 +29,6 @@ public class Saveable {
         }
     }
 
-
     // 创建对象的是时候回调
-    public void newInstance(ContentValues values) {
-    }
+    public abstract void newInstance(ContentValues values);
 }

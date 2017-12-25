@@ -54,7 +54,6 @@ public class DBProcessor extends AbstractProcessor {
             packageName = getPackageName((TypeElement) e);
         }
 
-
         // dbName,element 用户可以指定数据库的名字
         Map<String, List<Element>> dbs = new HashMap<>();
 
@@ -64,7 +63,7 @@ public class DBProcessor extends AbstractProcessor {
             String dbName = annation.dbName();
             List<Element> es = dbs.get(dbName);
             if (null == es) {
-                es = new ArrayList<Element>();
+                es = new ArrayList<>();
                 dbs.put(dbName, es);
             }
             es.add(e);
@@ -90,7 +89,7 @@ public class DBProcessor extends AbstractProcessor {
         }
 
         // packageName.substring(0, packageName.lastIndexOf("."))
-        ClassName dao = ClassName.get(packageName, "SQLiteDb");
+        ClassName dao = ClassName.get(/*packageName*/"com.dao", "SQLiteDB");
 
         MethodSpec getDaoSession = MethodSpec.methodBuilder("getDaoSession")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
@@ -107,8 +106,7 @@ public class DBProcessor extends AbstractProcessor {
                 .addModifiers(Modifier.PUBLIC)
                 .build();
 
-        // "com.zw"
-        JavaFile javaFile = JavaFile.builder(packageName.substring(0, packageName.lastIndexOf(".") + 1) + "dao", type).build();
+        JavaFile javaFile = JavaFile.builder(/*packageName.substring(0, packageName.lastIndexOf(".") + 1) + "dao"*/"com.dao", type).build();
         try {
             javaFile.writeTo(processingEnv.getFiler());
         } catch (IOException e) {
@@ -121,7 +119,7 @@ public class DBProcessor extends AbstractProcessor {
     }
 
     private void makeJavaFile(String packageName, TypeSpec type) {
-        JavaFile javaFile = JavaFile.builder(packageName, type).build();
+        JavaFile javaFile = JavaFile.builder(/*packageName*/"com.dao", type).build();
         try {
             javaFile.writeTo(processingEnv.getFiler());
         } catch (IOException e) {

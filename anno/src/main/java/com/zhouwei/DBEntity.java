@@ -16,6 +16,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.CLASS)
 public @interface DBEntity {
-    String dbName() default "SQLiteDb";
+    String dbName() default "SQLiteDB";
     int dbVersion() default 1;
 }

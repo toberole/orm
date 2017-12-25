@@ -2,7 +2,7 @@ package com.zhouwei.helloapt;
 
 import android.app.Application;
 
-import com.zhouwei.helloapt.util.DaoHelper;
+import com.zhouwei.helloapt.db.DaoHelper;
 
 /**
  * Created by zhouwei on 2017/12/25.

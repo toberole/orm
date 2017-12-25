@@ -1,10 +1,8 @@
-package com.zhouwei.helloapt.db;
+package com.zhouwei.helloapt.demo;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import static android.R.attr.version;
 
 /**
  * Created by zhouwei on 2017/12/23.

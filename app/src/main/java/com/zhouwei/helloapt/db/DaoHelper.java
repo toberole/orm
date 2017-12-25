@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt.util;
+package com.zhouwei.helloapt.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,11 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.zhouwei.helloapt.dao.DaoMaster;
-import com.zhouwei.helloapt.db.Saveable;
+import com.dao.DaoMaster;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by zhouwei on 2017/12/20.
@@ -57,11 +57,24 @@ public class DaoHelper {
         return res;
     }
 
+    public <T> List<T> get(Class clazz) {
+        List<T> res = null;
+        if (assertinit()) {
+            SQLiteOpenHelper dbSQLiteOpenHelper = DaoMaster.getDaoSession(context);
+            SQLiteDatabase db = dbSQLiteOpenHelper.getReadableDatabase();
+            Cursor cursor = db.rawQuery(" SELECT * FROM " + clazz.getSimpleName(), null);
+            res = generateResults(clazz, cursor);
+            db.close();
+        }
+        return res;
+    }
+
     public void delete(Class clazz, String whereClause, String[] whereArgs) {
         if (assertinit()) {
             SQLiteOpenHelper dbSQLiteOpenHelper = DaoMaster.getDaoSession(context);
             SQLiteDatabase db = dbSQLiteOpenHelper.getReadableDatabase();
             db.delete(clazz.getSimpleName(), whereClause, whereArgs);
+            db.close();
         }
     }
 
@@ -70,11 +83,12 @@ public class DaoHelper {
             SQLiteOpenHelper dbSQLiteOpenHelper = DaoMaster.getDaoSession(context);
             SQLiteDatabase db = dbSQLiteOpenHelper.getReadableDatabase();
             db.update(clazz.getSimpleName(), values, whereClause, whereArgs);
+            db.close();
         }
     }
 
 
-    public List generateResults(Class clazz, Cursor cursor) {
+    private List generateResults(Class clazz, Cursor cursor) {
         List res = new ArrayList();
         if (null != cursor) {
             while (cursor.moveToNext()) {
@@ -105,7 +119,7 @@ public class DaoHelper {
         }
     }
 
-    public boolean assertinit() {
+    private boolean assertinit() {
         return isInit;
     }
 

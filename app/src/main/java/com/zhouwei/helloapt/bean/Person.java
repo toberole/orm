@@ -1,6 +1,7 @@
 package com.zhouwei.helloapt.bean;
 
-import com.zhouwei.DBEntity;
+import android.content.ContentValues;
+
 import com.zhouwei.Property;
 import com.zhouwei.helloapt.db.Saveable;
 
@@ -18,4 +19,8 @@ public class Person extends Saveable{
     @Property(type = "String")
     private String thread;
 
+    @Override
+    public void newInstance(ContentValues values) {
+
+    }
 }
