@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AptActivity" />
-        <activity android:name=".InjectViewActivity"></activity>
+        <activity android:name=".InjectViewActivity" />
     </application>
 
 </manifest>

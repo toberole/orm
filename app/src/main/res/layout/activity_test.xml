@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zhouwei.helloapt.InjectViewActivity">
+    tools:context="com.zhouwei.helloapt.TestActivity">
 
 
     <Button
-        android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Test" />
+        android:text="Test Button" />
+
+
 </LinearLayout>
