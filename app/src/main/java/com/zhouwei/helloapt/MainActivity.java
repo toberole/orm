@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         delete.setOnClickListener(this);
         showLog.setOnClickListener(this);
 
+        Student student = new Student();
+
     }
 
     @Override

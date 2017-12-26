@@ -339,10 +339,10 @@ public class DBProcessor extends AbstractProcessor {
                 .returns(TypeName.VOID)
                 .addStatement(msg)
                 .build();
-        TypeSpec type = TypeSpec.classBuilder("Log" + System.currentTimeMillis())
+        TypeSpec type = TypeSpec.classBuilder("Log_" + System.currentTimeMillis())
                 .addMethod(methodSpec)
                 .addModifiers(Modifier.PUBLIC)
                 .build();
-        makeJavaFile("com.zw", type);
+        makeJavaFile("com.bluedao", type);
     }
 }
