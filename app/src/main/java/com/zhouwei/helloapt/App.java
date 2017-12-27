@@ -14,8 +14,8 @@ public class App extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        Hook.hookInstrumentation();
-        Hook.hookHandler();
+//        Hook.hookInstrumentation();
+//        Hook.hookHandler();
     }
 
     @Override

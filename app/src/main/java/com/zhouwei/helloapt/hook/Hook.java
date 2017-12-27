@@ -1,11 +1,17 @@
 package com.zhouwei.helloapt.hook;
 
 import android.app.Instrumentation;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 
+import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * Created by zhouwei on 2017/12/26.
@@ -63,6 +69,93 @@ public class Hook {
             mInstrumentation.set(activityThreadObject, userInstrumentation);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 修改 SharedPreferences 路径
+     *
+     * @param context
+     */
+    public static void hookContextImpl(Context context) {
+        try {
+            Class<?> clazz = Class.forName("android.app.ContextImpl");
+            Method method = clazz.getDeclaredMethod("getImpl", Context.class);
+            method.setAccessible(true);
+            Object mContextImpl = method.invoke(null, context);
+            //获取ContextImpl的实例
+            Field mPreferencesDir = clazz.getDeclaredField("mPreferencesDir");
+            mPreferencesDir.setAccessible(true);
+            //自定义的目录假设在SD卡
+            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                File file = new File(Environment.getExternalStorageDirectory(), "new_shared_pres");
+                if (!file.exists()) {
+                    file.mkdirs();
+                }
+                mPreferencesDir.set(mContextImpl, file);
+                Log.i("[app]", "修改sp路径成功");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * hook NotificationManager 自定义通知的相关逻辑
+     *
+     * @param context
+     */
+    public static void hookNotificationManager(Context context) {
+        try {
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            Method method = notificationManager.getClass().getDeclaredMethod("getService");
+            method.setAccessible(true);
+            //获取代理对象
+            final Object sService = method.invoke(notificationManager);
+            Log.i("[app]", "sService=" + sService);
+            Class<?> INotificationManagerClazz = Class.forName("android.app.INotificationManager");
+            Object proxy = Proxy.newProxyInstance(INotificationManagerClazz.getClassLoader(),
+                    new Class[]{INotificationManagerClazz}, new NotifictionProxy(sService));
+            //获取原来的对象
+            Field mServiceField = notificationManager.getClass().getDeclaredField("sService");
+            mServiceField.setAccessible(true);
+            //替换
+            mServiceField.set(notificationManager, proxy);
+            Log.i("[app]", "Hook NoticeManager Success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 通知代理类
+     */
+    public static class NotifictionProxy implements InvocationHandler {
+        private Object mObject;
+
+        public NotifictionProxy(Object mObject) {
+            this.mObject = mObject;
+        }
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            Log.d("[app]", "方法为:" + method.getName());
+            /**
+             * 做一些业务上的判断
+             * 这里以发送通知为准,发送通知最终的调用了enqueueNotificationWithTag
+             */
+            if (method.getName().equals("enqueueNotificationWithTag")) {
+                //具体的逻辑
+                for (int i = 0; i < args.length; i++) {
+                    if (args[i] != null) {
+                        Log.d("[app]", "参数为:" + args[i].toString());
+                    }
+                }
+                //做些其他事情，然后替换参数之类
+                return method.invoke(mObject, args);
+            }
+            return null;
         }
     }
 }
