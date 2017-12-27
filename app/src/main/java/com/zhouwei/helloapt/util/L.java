@@ -3,8 +3,9 @@ package com.zhouwei.helloapt.util;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.wuba.wchat.db.DaoHelper;
-import com.wuba.wchat.db.LogInfo;
+import com.zhouwei.helloapt.bean.LogInfo;
+import com.zhouwei.helloapt.db.DaoHelper;
+
 
 /**
  * Created by zhouwei on 2017/12/26.

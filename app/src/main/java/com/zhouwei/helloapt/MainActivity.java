@@ -1,12 +1,13 @@
 package com.zhouwei.helloapt;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.zhouwei.BindView;
+import com.zhouwei.OnClick;
 import com.zhouwei.helloapt.bean.APPLog;
 import com.zhouwei.helloapt.bean.Student;
 import com.zhouwei.helloapt.db.DaoHelper;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private android.widget.Button getPart;
     private android.widget.Button saveLog;
     private android.widget.Button showLog;
+
+    @BindView
     private android.widget.Button deleteLog;
 
     @Override
@@ -50,9 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         delete.setOnClickListener(this);
         showLog.setOnClickListener(this);
 
-        Student student = new Student();
-
-        SharedPreferences sp = getSharedPreferences("", "");
 
     }
 
@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
+
+    }
+
+    @OnClick({R.id.showLog})
+    public void click(View v) {
 
     }
 }
