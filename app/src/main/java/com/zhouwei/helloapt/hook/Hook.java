@@ -9,7 +9,6 @@ import android.util.Log;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
@@ -131,7 +130,7 @@ public class Hook {
     /**
      * 通知代理类
      */
-    public static class NotifictionProxy implements InvocationHandler {
+    public static class NotifictionProxy implements java.lang.reflect.InvocationHandler {
         private Object mObject;
 
         public NotifictionProxy(Object mObject) {
@@ -156,6 +155,54 @@ public class Hook {
                 return method.invoke(mObject, args);
             }
             return null;
+        }
+    }
+
+    /**
+     * hook ActivityManagerService
+     * 通过代理模式可以拦截里面的所有方法
+     * 比如： 可以拦截activity的启动
+     */
+    public static void hookActivityManagerService(Context context) throws Exception {
+        // 先获取ActivityManagerNative中的gDefault
+        Class<?> amnClazz = Class.forName("android.app.ActivityManagerNative");
+        Field defaultField = amnClazz.getDeclaredField("gDefault");
+        defaultField.setAccessible(true);
+        Object gDefaultObj = defaultField.get(null);
+
+        // 获取Singleton里面的mInstance
+        Class<?> singletonClazz = Class.forName("android.util.Singleton");
+        Field amsField = singletonClazz.getDeclaredField("mInstance");
+        amsField.setAccessible(true);
+        Object amsObj = amsField.get(gDefaultObj);
+
+        // 动态代理Hook下钩子 勾住AMS
+        amsObj = Proxy.newProxyInstance(context.getClass().getClassLoader(),
+                amsObj.getClass().getInterfaces(),
+                new InvocationHandler(amsObj, context));
+        // 注入
+        amsField.set(gDefaultObj, amsObj);
+    }
+
+    /**
+     * Invocation Handler
+     */
+    private static class InvocationHandler implements java.lang.reflect.InvocationHandler {
+        private Object mAmsObj;
+        private Context context;
+
+        public InvocationHandler(Object amsObj, Context context) {
+            this.mAmsObj = amsObj;
+            this.context = context;
+        }
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            // 拦截到所有ActivityManagerService的方法
+            Log.e("TAG", "methodName" + method.getName());
+            // TODO 干点自己相干的事情
+
+            return method.invoke(mAmsObj, args);
         }
     }
 }
