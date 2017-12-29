@@ -21,6 +21,7 @@ public class UserInstrumentation extends Instrumentation {
     public Activity newActivity(ClassLoader cl, String className, Intent intent) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         Log.i("[app]", "do anything that what you want");
         Log.i("[app]", "className=" + className + " intent=" + intent);
+
         return super.newActivity(cl, className, intent);
     }
 }

@@ -1,39 +1,3 @@
-# ActivityThread 
-	ActivityThread有什么作用呢?ActivityThread的作用很多，但最主要的作用是
-	根据AMS(ActivityManagerService的要求，通过IApplicationTHread的接口)
-	负责调度和执行activities、broadcasts和其它操作。在Android系统中，四大
-	组件默认都是运行在主线程上的
-
-# **AMS ActivityThread Activity**
-
-# AMS在ActivityThread里面的代理是：
-	// ActivityThread通过mgr调用AMS
-	IActivityManager mgr = ActivityManagerNative.getDefault();
-	
-# ActivityThread在AMS里面的代理是：
-	//	attach方法里面 AMS通过mAppThread控制ActivityThread
-	// ApplicationThread mAppThread = new ApplicationThread();
-	mgr.attachApplication(mAppThread);
-
-<pre>
-
-ActivityThread与AMS的交互是一次IPC调用，当然这里要搞清楚些，AMS调用
-ActivityThread是通过ApplicationThreadProxy对象，而ActivityThread调
-用AMS的方法却是ActivityManagerProxy
-
-Activity的里面的生命周期方法其实是由AMS调度，ActivityThread执行,再到Activity本身。
-
-Android系统是依靠消息分发机制来实现系统的运转的
-
-
-发送广播其实也是利用AMS的
-
-</pre>
-
-四大组件都是反射创建，并执行生命周期方法，而调度是由AMS负责，ActivityThread主线程负责执行,所以说AMS是调度者，主线程是执行者
-
-
-
 # UrlRouter路由框架的设计 
 
 	1、可取代使用startActivity、startActivityForResult跳转的情景，便于协同开发
@@ -145,3 +109,58 @@ public static ResolveInfo queryActivity(Context context, Intent intent) {
 }
 
 </pre>
+
+
+# 外置浏览器跳App内页面的处理
+
+要支持外置浏览器跳App页面，必须在manifest文件中给相应的Activity的intent-filter添加<category android:name="android.intent.category.BROWSABLE"/> 属性，因为从浏览器中发起的intent的Category就是android.intent.category.BROWSABLE，所以要让App中相应的界面接收到浏览器的intent，则必须设置这个Category
+	
+	下面这个filter就支持浏览器跳App内页面:
+	<intent-filter>
+		<action android:name="android.intent.action.VIEW"/>
+		<category android:name="android.intent.category.DEFAULT"/>
+		<category android:name="android.intent.category.BROWSABLE"/>
+	</intent-filter>
+
+# UrlRouter框架跳转方式
+
+	最终我们可以封成使用这样的方式来跳转的一个UrlRouter框架：
+	
+	UrlRouter.from(this).jump("activity://native/login");
+	
+	当需设置其它params、requestCode、转场动画时，可以这样使用：
+	
+	UrlRouter.from(this)
+	        .params(bundle)
+	        .requestCode(REQUEST_LOGIN)
+	        .transitionAnim(0,0)
+	        .jump("activity://native/login");
+
+	对于需要跳转到主页时，应单独实现一个方法，因为主页的intent的action和category比较特殊，所以主页Activity应这样配置：
+
+	<activity
+	    android:name=".MainActivity"
+	    android:label="@string/app_name"
+	    android:theme="@style/AppTheme.NoActionBar">
+	    <intent-filter>
+	        <action android:name="android.intent.action.MAIN"/>
+	
+	        <category android:name="android.intent.category.LAUNCHER"/>
+	        <category android:name="android.intent.category.DEFAULT"/>
+	
+	        <data
+	            android:host="native"
+	            android:path="/main"
+	            android:scheme="activity"/>
+	    </intent-filter>
+	</activity>
+	
+	跳转代码为：
+	
+	UrlRouter.from(this).jumpToMain("activity://native/main");
+	
+	这样的方式非常简洁，而且维护也非常方便，因为统一都是在manifest文件中配置，最重要的是没有其它UrlRouter框架那么复杂繁重，最终封的框架只有三个类。
+
+
+
+

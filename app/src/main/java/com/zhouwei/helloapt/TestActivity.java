@@ -19,21 +19,6 @@ public class TestActivity extends Activity {
         setContentView(R.layout.activity_test);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        Log.i("[app]", "==onStart==");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        Log.i("[app]", "==onResume==");
-    }
-
-
     @OnClick({R.id.btn_bindView})
     public void bindViewOnClick(View v) {
         Log.i("AAAA", "bindViewOnClick");

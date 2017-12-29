@@ -2,17 +2,11 @@ package com.zhouwei.helloapt;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.zhouwei.BindView;
 import com.zhouwei.OnClick;
-import com.zhouwei.helloapt.bean.APPLog;
-import com.zhouwei.helloapt.bean.Student;
-import com.zhouwei.helloapt.db.DaoHelper;
 
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private android.widget.Button saveLog;
     private android.widget.Button showLog;
 
-    @BindView
     private android.widget.Button deleteLog;
 
     @Override
@@ -55,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        sendBroadcast();
     }
 
     @Override
