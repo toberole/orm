@@ -54,39 +54,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showLog.setOnClickListener(this);
 
 
+
+        sendBroadcast();
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.saveLog) {
-            APPLog appLog = new APPLog();
-            appLog.setMsg("saveLog");
-            appLog.setTag("saveLog Tag");
-            appLog.setTime(System.currentTimeMillis() + "");
-            appLog.setThread(Thread.currentThread().getName());
-            DaoHelper.getInstance().save(appLog);
-        } else if (v.getId() == R.id.showLog) {
-            List<APPLog> appLogs = DaoHelper.getInstance().get(APPLog.class);
-            if (appLogs != null) {
-                for (int i = 0; i < appLogs.size(); i++) {
-                    Log.i("AAAA", appLogs.get(i).toString());
-                }
-            }
-        } else if (v.getId() == R.id.add) {
-            Student student = new Student();
-            student.setAge(11);
-            student.setName("xiaogong");
-            student.setGender("men");
-
-            DaoHelper.getInstance().save(student);
-        } else if (v.getId() == R.id.get) {
-            List<Student> students = DaoHelper.getInstance().get(Student.class);
-            if (students != null) {
-                for (int i = 0; i < students.size(); i++) {
-                    Log.i("AAAA", students.get(i).toString());
-                }
-            }
-        }
+//        if (v.getId() == R.id.saveLog) {
+//            APPLog appLog = new APPLog();
+//            appLog.setMsg("saveLog");
+//            appLog.setTag("saveLog Tag");
+//            appLog.setTime(System.currentTimeMillis() + "");
+//            appLog.setThread(Thread.currentThread().getName());
+//            // DaoHelper.getInstance().save(appLog);
+//        } else if (v.getId() == R.id.showLog) {
+//            List<APPLog> appLogs = DaoHelper//.getInstance().get(APPLog.class);
+//            if (appLogs != null) {
+//                for (int i = 0; i < appLogs.size(); i++) {
+//                    Log.i("AAAA", appLogs.get(i).toString());
+//                }
+//            }
+//        } else if (v.getId() == R.id.add) {
+//            Student student = new Student();
+//            student.setAge(11);
+//            student.setName("xiaogong");
+//            student.setGender("men");
+//
+//            // DaoHelper.getInstance().save(student);
+//        } else if (v.getId() == R.id.get) {
+//            List<Student> students = DaoHelper.getInstance().get(Student.class);
+//            if (students != null) {
+//                for (int i = 0; i < students.size(); i++) {
+//                    Log.i("AAAA", students.get(i).toString());
+//                }
+//            }
+//        }
 
     }
 

@@ -1,6 +1,5 @@
 package com.zhouwei;
 
-import com.google.auto.service.AutoService;
 import com.zhouwei.bindview.model.AnnotatedClass;
 import com.zhouwei.bindview.model.BindViewField;
 import com.zhouwei.bindview.model.OnClickMethod;
@@ -14,9 +13,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
-import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
@@ -27,8 +24,8 @@ import javax.tools.Diagnostic;
  * Created by zhouwei on 2017/12/27.
  */
 
-@AutoService(Processor.class)
-@SupportedAnnotationTypes({"com.zhouwei.BindView", "com.zhouwei.OnClick"})
+//@AutoService(Processor.class)
+//@SupportedAnnotationTypes({"com.zhouwei.BindView", "com.zhouwei.OnClick"})
 public class BindViewProcessor extends AbstractProcessor {
     /**
      * 文件相关的辅助类

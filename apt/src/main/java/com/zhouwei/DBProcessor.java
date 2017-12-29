@@ -1,6 +1,5 @@
 package com.zhouwei;
 
-import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
@@ -16,7 +15,6 @@ import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.ProcessingEnvironment;
-import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.AnnotationMirror;
@@ -32,10 +30,10 @@ import static com.squareup.javapoet.TypeSpec.classBuilder;
 /**
  * Created by zhouwei on 2017/12/23.
  */
-@AutoService(Processor.class)
-@SupportedAnnotationTypes({// 被处理的注解的全限定名称
-        "com.zhouwei.AutoIncrement", "com.zhouwei.DBEntity", "com.zhouwei.Primarykey", "com.zhouwei.Property"
-})
+//@AutoService(Processor.class)
+//@SupportedAnnotationTypes({// 被处理的注解的全限定名称
+//        "com.zhouwei.AutoIncrement", "com.zhouwei.DBEntity", "com.zhouwei.Primarykey", "com.zhouwei.Property"
+//})
 public class DBProcessor extends AbstractProcessor {
     private Elements elementUtils;
     private ClassName sqLiteOpenHelper_;

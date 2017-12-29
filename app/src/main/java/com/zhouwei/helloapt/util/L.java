@@ -4,7 +4,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.zhouwei.helloapt.bean.LogInfo;
-import com.zhouwei.helloapt.db.DaoHelper;
 
 
 /**
@@ -66,7 +65,7 @@ public class L {
             String extraInfo = Log.getStackTraceString(new Throwable());
             appLog.setExtraInfo(extraInfo);
 
-            DaoHelper.getInstance().save(appLog);
+           // DaoHelper.getInstance().save(appLog);
         }
     }
 

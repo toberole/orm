@@ -205,4 +205,53 @@ public class Hook {
             return method.invoke(mAmsObj, args);
         }
     }
+
+    /**
+     * 统计哪些Activity被使用过、还可以拦截
+     * 还可以通过其他的方法
+     */
+    public static void hookActivityThread() {
+        try {
+            Class clazz = Class.forName("android.app.ActivityThread");
+            Method currentActivityThread = clazz.getDeclaredMethod("currentActivityThread");
+            Object activityThread = currentActivityThread.invoke(null);
+
+            // 换掉mActivities 使用我们特供的
+            Field mActivities = clazz.getDeclaredField("mActivities");
+            mActivities.setAccessible(true);
+            Object mActivitiesValue = mActivities.get(activityThread);
+
+            Log.i("hookActivityThread", "" + mActivitiesValue.getClass().getName());
+
+
+            Object proxy = Proxy.newProxyInstance(activityThread.getClass().getClassLoader(),
+                    new Class[]{java.util.Map.class}, new ArrayMapProxy(mActivitiesValue));
+
+            mActivities.set(activityThread, proxy);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static class ArrayMapProxy implements java.lang.reflect.InvocationHandler {
+        private Object mObject;
+
+        public ArrayMapProxy(Object mObject) {
+            this.mObject = mObject;
+        }
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            Log.i("[hookapp]", "方法为:" + method.getName());
+
+            if (method.getName().equals("put")) {
+                //具体的逻辑
+
+            }
+            return method.invoke(mObject, args);
+        }
+
+
+    }
 }

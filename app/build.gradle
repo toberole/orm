@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         // 设置MultiDex可用
-        multiDexEnabled true
+        // multiDexEnabled true
     }
     buildTypes {
         release {
@@ -21,9 +21,9 @@ android {
     }
 
     // 保证其他的lib没有被preDex
-    dexOptions {
-        preDexLibraries = false
-    }
+//    dexOptions {
+//        preDexLibraries = false
+//    }
 }
 repositories { maven { url "https://maven.google.com" } }
 dependencies {
@@ -41,7 +41,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // MultiDex的依赖
-    compile 'com.android.support:multidex:1.0.0'
+    //compile 'com.android.support:multidex:1.0.0'
 }
 
 
