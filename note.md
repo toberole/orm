@@ -43,3 +43,7 @@ adb shell am start -W [packageName]/[packageName.MainActivity]
 	2、TotalTime:应用的启动时间，包括创建进程+Application初始化+Activity初始化到界面显示。
 	3、WaitTime:一般比TotalTime大点，包括系统影响的耗时。
 
+
+
+
+
