@@ -4,9 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.zhouwei.helloapt.fixbug.FileUtils;
+import com.zhouwei.helloapt.fixbug.FixDexUtils;
 import com.zhouwei.helloapt.fixbug.FixDexUtils1;
 
 import java.io.File;
@@ -20,7 +23,9 @@ public class TestHotFixUtilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_hot_fixutil);
     }
 
+
     public void inject(View view) {
+        Log.i("AAAA", "inject");
 
         // 无bug的classes2.dex文件存放地址
         String sourceFile = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator
@@ -31,7 +36,7 @@ public class TestHotFixUtilActivity extends AppCompatActivity {
                 + "classes2.dex";
 
         try {
-            // android 系统的原因，如果加载.dex文件，必须放到私有目录odex下
+            // android 4.1系统classloader加载.dex文件，必须放到私有目录odex下 否则无法加载 处于安全原因
             // 复制文件到私有目录
             FileUtils.copyFile(sourceFile, targetFile);
 
@@ -43,7 +48,15 @@ public class TestHotFixUtilActivity extends AppCompatActivity {
         }
     }
 
+    public void inject1(View view) {
+        Log.i("AAAA", "inject1");
+        // 加载.dex文件
+        FixDexUtils.loadFixedDex(this.getApplication(), Environment.getExternalStorageDirectory());
+    }
+
+
     public void test(View view) {
-        Test.show(this);
+        Test test = new Test();
+        Toast.makeText(TestHotFixUtilActivity.this, test.show(), Toast.LENGTH_SHORT).show();
     }
 }

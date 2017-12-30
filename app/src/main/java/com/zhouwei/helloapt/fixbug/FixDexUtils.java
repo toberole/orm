@@ -51,7 +51,7 @@ public class FixDexUtils {
         File fileDir = patchFilesDir != null ? patchFilesDir : new File(context.getFilesDir(), DEX_DIR);// data/data/包名/files/odex（这个可以任意位置）
         File[] listFiles = fileDir.listFiles();
         for (File file : listFiles) {
-            if (file.getName().startsWith("classes") &&
+            if (file.getName().contains("classes") &&
                     (file.getName().endsWith(DEX_SUFFIX)
                             || file.getName().endsWith(APK_SUFFIX)
                             || file.getName().endsWith(JAR_SUFFIX)

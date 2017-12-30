@@ -30,7 +30,7 @@ public class FixDexUtils1 {
 
 
     public static void loadFixDex(Context context) {
-        // android 系统的原因，如果加载.dex文件，必须放到私有目录odex下。
+        // android 系统4.1之后处于安全考虑，如果加载.dex文件，必须放到私有目录odex下 有些ROM没这些限制
         // 获取到系统的odex 目录
         File fileDir = context.getDir("odex", Context.MODE_PRIVATE);
 
