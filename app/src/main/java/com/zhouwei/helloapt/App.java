@@ -16,7 +16,7 @@ public class App extends Application {
 
         //  MultiDex.install(base);
         // Hook.hookActivityThread();
-        // FixDexUtils1.loadFixDex(base);
+        // HotFixDexUtils.loadFixDex(base);
 
         // 应用启动的时候就需要注入 因为有可能需要替换的dex 里面的class已经加载进虚拟机了缓存起来了
         // 在这之后在动态的加载dex可能就无效 注意类的加载机制

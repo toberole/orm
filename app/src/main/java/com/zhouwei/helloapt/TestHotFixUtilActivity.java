@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.zhouwei.helloapt.fixbug.FileUtils;
 import com.zhouwei.helloapt.fixbug.FixDexUtils;
-import com.zhouwei.helloapt.fixbug.FixDexUtils1;
+import com.zhouwei.helloapt.fixbug.HotFixDexUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class TestHotFixUtilActivity extends AppCompatActivity {
             FileUtils.copyFile(sourceFile, targetFile);
 
             // 加载.dex文件
-            FixDexUtils1.loadFixDex(this.getApplication());
+            HotFixDexUtils.loadFixDex(this.getApplication());
 
         } catch (IOException e) {
             e.printStackTrace();

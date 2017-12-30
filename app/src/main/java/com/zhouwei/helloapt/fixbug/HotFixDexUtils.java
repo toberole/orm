@@ -21,7 +21,7 @@ import dalvik.system.PathClassLoader;
  * C:\Users\Administrator\Desktop\dex // 修复之后的class的路径 注意只需要填写其所在目录的更目录即可
  */
 
-public class FixDexUtils1 {
+public class HotFixDexUtils {
     private static HashSet<File> loadedDex = new HashSet<File>();
 
     static {
