@@ -159,7 +159,6 @@ public static ResolveInfo queryActivity(Context context, Intent intent) {
 	
 	UrlRouter.from(this).jumpToMain("activity://native/main");
 	
-	这样的方式非常简洁，而且维护也非常方便，因为统一都是在manifest文件中配置，最重要的是没有其它UrlRouter框架那么复杂繁重，最终封的框架只有三个类。
 
 
 

@@ -3,7 +3,6 @@ package com.zhouwei.helloapt;
 import android.app.Application;
 import android.content.Context;
 
-import com.zhouwei.helloapt.db.DaoHelper;
 import com.zhouwei.helloapt.hook.Hook;
 
 /**

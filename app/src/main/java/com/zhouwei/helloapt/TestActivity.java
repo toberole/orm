@@ -17,6 +17,9 @@ public class TestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        startActivity();
+
     }
 
     @OnClick({R.id.btn_bindView})
