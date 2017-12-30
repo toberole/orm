@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.zhouwei.BindView;
 import com.zhouwei.OnClick;
@@ -18,13 +19,7 @@ public class TestActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        fixBug();
-
-    }
-
-    private void fixBug() {
-
-
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick({R.id.btn_bindView})
