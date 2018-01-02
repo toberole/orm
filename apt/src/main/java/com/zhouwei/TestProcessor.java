@@ -18,7 +18,7 @@ import javax.lang.model.util.ElementFilter;
 
 //@AutoService(Processor.class)
 //@SupportedAnnotationTypes({
-//        "com.example.Test"
+//        "com.example.ProxyUtils"
 //})
 
 
@@ -36,12 +36,12 @@ public class TestProcessor extends AbstractProcessor {
                 .returns(void.class)
                 .addParameter(String[].class, "args");
 
-        Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(Test.class);
+        Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(ProxyUtils.class);
         for (TypeElement e : ElementFilter.typesIn(elements)) {
             // 构建代码块
             CodeBlock codeBlock = CodeBlock.builder()
                     .addStatement("$T.out.println(\"$L + $L\")", System.class,
-                            e.getAnnotation(Test.class).value(), e.getSimpleName())
+                            e.getAnnotation(ProxyUtils.class).value(), e.getSimpleName())
                     .build();
             // 将代码块加入方法
             methodBuilder.addCode(codeBlock);
