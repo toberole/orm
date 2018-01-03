@@ -13,7 +13,6 @@ import java.util.Date;
 /**
  * Created by zhouwei on 2017/12/26.
  */
-@DBEntity
 public class LogInfo extends Saveable {
     private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
     private static final SimpleDateFormat formater = new SimpleDateFormat(FORMAT);

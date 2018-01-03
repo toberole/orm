@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt;
+package com.zhouwei.helloapt.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.zhouwei.helloapt.R;
 import com.zhouwei.helloapt.fixbug.FileUtils;
 import com.zhouwei.helloapt.fixbug.FixDexUtils;
 import com.zhouwei.helloapt.fixbug.HotFixDexUtils;

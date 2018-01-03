@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt;
+package com.zhouwei.helloapt.activity;
 
 import android.content.pm.ApplicationInfo;
 import android.content.res.Resources;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.zhouwei.helloapt.R;
 import com.zhouwei.helloapt.plugin.PluginUtil;
 
 import java.io.File;

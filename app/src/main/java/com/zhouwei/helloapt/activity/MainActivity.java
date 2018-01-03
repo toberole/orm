@@ -1,12 +1,11 @@
-package com.zhouwei.helloapt;
+package com.zhouwei.helloapt.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.zhouwei.OnClick;
-
+import com.zhouwei.helloapt.R;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -84,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @OnClick({R.id.showLog})
     public void click(View v) {
 
     }

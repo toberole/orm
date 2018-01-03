@@ -1,10 +1,13 @@
-package com.zhouwei.helloapt;
+package com.zhouwei.helloapt.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import com.zhouwei.helloapt.R;
+import com.zhouwei.helloapt.service.TestService;
 import com.zhouwei.helloapt.util.ToastCustom;
 
 public class TestToastAtivity extends AppCompatActivity {
@@ -20,11 +23,13 @@ public class TestToastAtivity extends AppCompatActivity {
 
     public void show(View v) {
         Log.i("AAAA", "show");
-        toastCustom.show();
+        //toastCustom.show();
+        Intent intent = new Intent(TestToastAtivity.this, TestService.class);
+        TestToastAtivity.this.startService(intent);
     }
 
     public void hide(View v) {
         Log.i("AAAA", "hide");
-        toastCustom.cancel();
+        //toastCustom.cancel();
     }
 }

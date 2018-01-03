@@ -1,9 +1,5 @@
 package com.zhouwei;
 
-import java.io.FileOutputStream;
-
-import sun.misc.ProxyGenerator;
-
 /**
  * Created by zhouwei on 2018/1/2.
  * <p>
@@ -18,17 +14,17 @@ public class ProxyUtils {
      * @param clazz     需要生成动态代理类的类
      * @param proxyName 为动态生成的代理类的名称
      */
-    public static void generateClassFile(Class clazz, String proxyName) {
-        try {
-            byte[] classFile = ProxyGenerator.generateProxyClass(proxyName, clazz.getInterfaces());
-            String paths = clazz.getResource(".").getPath();
-            System.out.println(paths);
-
-            FileOutputStream fout = new FileOutputStream(paths + proxyName + ".class");
-            fout.write(classFile);
-            fout.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void generateClassFile(Class clazz, String proxyName) {
+//        try {
+//            byte[] classFile = ProxyGenerator.generateProxyClass(proxyName, clazz.getInterfaces());
+//            String paths = clazz.getResource(".").getPath();
+//            System.out.println(paths);
+//
+//            FileOutputStream fout = new FileOutputStream(paths + proxyName + ".class");
+//            fout.write(classFile);
+//            fout.flush();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zhouwei.helloapt.PluginActivity1">
+    tools:context="com.zhouwei.helloapt.activity.PluginActivity1">
 
 </android.support.constraint.ConstraintLayout>

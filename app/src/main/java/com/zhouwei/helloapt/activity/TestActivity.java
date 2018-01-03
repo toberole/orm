@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt;
+package com.zhouwei.helloapt.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,11 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.zhouwei.BindView;
-import com.zhouwei.OnClick;
+import com.zhouwei.helloapt.R;
 
 public class TestActivity extends Activity {
-    @BindView
     public Button btn_bindView;
 
     @Override
@@ -22,7 +20,6 @@ public class TestActivity extends Activity {
         Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick({R.id.btn_bindView})
     public void bindViewOnClick(View v) {
         Log.i("AAAA", "bindViewOnClick");
     }

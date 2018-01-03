@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt;
+package com.zhouwei.helloapt.activity;
 
 /**
  * 测试类

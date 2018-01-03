@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt;
+package com.zhouwei.helloapt.activity;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.zhouwei.helloapt.R;
 
 import java.io.File;
 import java.lang.reflect.Field;
