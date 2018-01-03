@@ -140,3 +140,130 @@ View类默认的onMeasure()方法只支持EXACTLY模式，如果要支持其它�
 	2）onLayout()：设置子View的位置；
 
 	3）onTouchEvent()：设置触摸交互事件。
+
+
+# Android系统启动流程
+1 首先Bootloader引导程序启动完Linux内核后，会加载各种驱动和数据结构，当有了驱动以后，开始启动Android系统，同时会加载用户级别的第一个进程init(system\core\init.c),该进程会首先加载一个init.rc配置文件。
+代码：
+<pre>
+	int main(int argc, char **argv){
+    
+        // 创建文件夹 挂载
+        mount("tmpfs", "/dev", "tmpfs", 0, "mode=0755");
+        mkdir("/dev/pts", 0755);
+       
+        // 打开日志
+        log_init();
+        
+        INFO("reading config file\n");
+        // 加载init.rc配置文件
+		init_parse_config_file("/init.rc");
+	}
+
+</pre> 
+2 init.rc配置文件会进行很多的配置，创建很多的文件夹及文件，然后初始化一些Android驱动器，之后该配置文件最重要的一个任务就是启动一个Zygote(孵化器)进程，此进程是Android系统的一个母进程，用来启动Android的其他服务进程.
+代码：
+
+<pre>
+
+# Mount filesystems and start core system services.
+on late-init
+    trigger early-fs
+
+    # Mount fstab in init.{$device}.rc by mount_all command. Optional parameter
+    # '--early' can be specified to skip entries with 'latemount'.
+    # /system and /vendor must be mounted by the end of the fs stage,
+    # while /data is optional.
+    trigger fs
+    trigger post-fs
+
+    # Mount fstab in init.{$device}.rc by mount_all with '--late' parameter
+    # to only mount entries with 'latemount'. This is needed if '--early' is
+    # specified in the previous mount_all command on the fs stage.
+    # With /system mounted and properties form /system + /factory available,
+    # some services can be started.
+    trigger late-fs
+
+    # Now we can mount /data. File encryption requires keymaster to decrypt
+    # /data, which in turn can only be loaded when system properties are present.
+    trigger post-fs-data
+
+    # Now we can start zygote for devices with file based encryption
+    trigger zygote-start
+
+    # Load persist properties and override properties (if enabled) from /data.
+    trigger load_persist_props_action
+
+    # Remove a file to wake up anything waiting for firmware.
+    trigger firmware_mounts_complete
+
+    trigger early-boot
+    trigger boot
+</pre>
+
+3 Zygote会执行一个app_process下面的 app_main.cpp可执行文件，在这个文件中首先添加了Android运行时环境，在Android运行时中调用了ZygoteInit.java，这就从c++代码跳到了java代码。
+<pre>
+// 从c++代码跳到了java代码
+runtime.start("com.android.internal.os.ZygoteInit",
+                startSystemServer ? "start-system-server" : "");
+</pre>
+4 在ZytofeInit.java代码中首先设置了Java虚拟机的堆内存空间，然后启动一个类加载器加载Android启动依赖的类比如Activity等四大组件，dialog等UI的类，然后分出一个子进程启动SystemServer系统服务。
+<pre>
+	public static void main(String argv[]) {
+		registerZygoteSocket();
+		preload();
+		if (argv[1].equals("start-system-server")) {
+			// 启动系统服务
+			    /**
+     			* Prepare the arguments and fork for the system 
+     			* server process.
+     			*/
+        	startSystemServer();//com.android.server.SystemServer
+        }
+	}
+
+
+    static void preload() {
+		// 加载 Android依赖的类
+        preloadClasses();
+		// 加载 Android依赖的Resource
+        preloadResources();
+		// 加载 OpenGL
+        preloadOpenGL();
+    }
+
+</pre>
+
+5 在SystemServer.java代码中启动Native世界，启动Android的Framework世界
+
+<pre>
+public static void main(String[] args) {
+	
+        System.loadLibrary("android_servers");
+
+        Slog.i(TAG, "Entered the Android system server!");
+
+        // Initialize native services.启动Native世界
+		// Called to initialize native system services.
+        nativeInit();
+
+        // This used to be its own separate thread, but now it is
+        // just the loop we run on the main thread.
+		// 启动Android的Framework世界
+        ServerThread thr = new ServerThread();
+        thr.initAndLoop();
+}
+</pre>
+
+6 SystemServer首先调用加载JNI库，启动Native世界。通过System.loadLibrary("android_servers")加载一个类库文件，其对应的源码文件为com_android_server_SystemServer.cpp
+
+7 启动Android的Framework世界 ServerThread,开启了Android中的各种服务比如LightService，PowerManagerService，BatteryService，WindowManagerService等，并将服务添加到ServiceManager中去管理，启动完各种服务后，调用ActivityManagerService.systemReady方法
+
+8 ActivityManagerService.systemReady启动桌面
+
+
+
+
+
+
+

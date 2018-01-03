@@ -2,8 +2,6 @@ package com.zhouwei.helloapt;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,9 +20,6 @@ public class TestActivity extends Activity {
         setContentView(R.layout.activity_test);
 
         Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-        Looper.prepare();
-        Handler handler = new Handler();
-        Looper.loop();
     }
 
     @OnClick({R.id.btn_bindView})
