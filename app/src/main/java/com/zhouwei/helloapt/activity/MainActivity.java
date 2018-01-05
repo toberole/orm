@@ -1,5 +1,6 @@
 package com.zhouwei.helloapt.activity;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showLog.setOnClickListener(this);
 
 
+        Resources resources = getResources();
+        getBaseContext().getAssets();
+        // Proxy.newProxyInstance()
 
     }
 

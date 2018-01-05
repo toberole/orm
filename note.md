@@ -259,10 +259,7 @@ public static void main(String[] args) {
 
 7 启动Android的Framework世界 ServerThread,开启了Android中的各种服务比如LightService，PowerManagerService，BatteryService，WindowManagerService等，并将服务添加到ServiceManager中去管理，启动完各种服务后，调用ActivityManagerService.systemReady方法
 
-8 ActivityManagerService.systemReady启动桌面
-
-
-
+8 ActivityManagerService.systemReady里面会启动桌面Launch``
 
 # IPC
 在利用Binder发起IPC调用的时候，发起方的线程会被挂起 ，等待服务方的返回结果。
@@ -272,7 +269,6 @@ public static void main(String[] args) {
 服务方为进程请求分配每个进程的线程池，服务方被调用的方法是运行在服务方的Binder 线程池中的【在执行服务端的方法的时候如果需要给客户端返回结果，那么千万不要再起线程了，这样是为了避免客户端拿不到结果】，且该线程池有最大限制。
 
 
-
-
+多线程使用同一个SqliteDataBase操作数据库的时候 不会存在多线程的问题，但是如果不是使用的同一个SqliteDatabase就会存在问题。
 
 
