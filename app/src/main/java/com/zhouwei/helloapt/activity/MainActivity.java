@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getBaseContext().getAssets();
         // Proxy.newProxyInstance()
 
+        this.startService();
+
+        sendBroadcast();
+
     }
 
     @Override

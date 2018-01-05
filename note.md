@@ -272,3 +272,20 @@ public static void main(String[] args) {
 多线程使用同一个SqliteDataBase操作数据库的时候 不会存在多线程的问题，但是如果不是使用的同一个SqliteDatabase就会存在问题。
 
 
+# Application
+ActivityThread的attach方法里面会生成ContextImpl 即Context
+
+<pre>
+    mInstrumentation = new Instrumentation();
+    ContextImpl context = ContextImpl.createAppContext(
+            this, getSystemContext().mPackageInfo);
+	// Instrumentation.newApplication 回传ContextImpl 赋值给mBase
+    mInitialApplication = context.mPackageInfo.makeApplication(true, null);
+    mInitialApplication.onCreate();
+</pre>
+
+
+# 系统启动
+在系统服务启动时添加PackageManagerService，在这个过程中packagemanager就会对各个app安装目录的apk文件进行扫描解析，manifest就是此时解析的。
+
+
