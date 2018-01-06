@@ -288,4 +288,36 @@ ActivityThread的attach方法里面会生成ContextImpl 即Context
 # 系统启动
 在系统服务启动时添加PackageManagerService，在这个过程中packagemanager就会对各个app安装目录的apk文件进行扫描解析，manifest就是此时解析的。
 
+# 广播的注册
+1、静态注册 在manifest文件里面配置
 
+2、利用Context注册 最终调用的是ActivityManagerNative.getDefault().registerReceiver(），AMS
+
+# 特别注意
+onReceive运行在主线程【不能做耗时的操作】
+
+**静态注册**的广播 每次在接受广播事件的时候，该接受者都是被重新new出来的，出了receiver方法之后 就有可能被kill掉，所以在onreceiver里面new 线程做耗时操作 是不靠谱稳定的。
+
+**动态注册**的BroadcastReceiver. 动态注册的BroadcastReceiver对象的生命其实是受控制的.使用Context.registerReceiver和Context.unregisterReceiver注册的BroadcastReceiver每次收到广播都是使用我们注册时传入的对象处理的。
+
+
+
+分为两种，有序广播，首先按照优先级排列，同优先级的动态广播先于静态广播，同优先级的动态广播中先注册的先处理，同优先级的静态广播中先扫描的APP广播先处理。
+有序广播则，无视优先级，动态广播先于静态广播，动态广播中先注册的先处理，静态广播中先扫描的APP广播先处理。
+
+
+
+1. 普通广播
+2. 有序广播
+	  广播接受者按照优先级 处理广播，广播可以被修改 可以截断终止 低优先级的广播接受者就接受不到广播了
+3. 粘性广播
+
+# 全局广播设置成局部广播
+
+    注册广播时将exported属性设置为false，使得非本App内部发出的此广播不被接收；
+
+    在广播发送和接收时，增设相应权限permission，用于权限验证；
+
+    发送广播时指定该广播接收器所在的包名，此广播将只会发送到此包中的App内与之相匹配的有效广播接收器中。
+
+	使用封装好的LocalBroadcastManager类

@@ -23,6 +23,12 @@
         <service
             android:name="com.zhouwei.helloapt.service.TestService"
             android:process="com.zhouwei.helloapt.test" />
+
+        <receiver android:name="com.zhouwei.helloapt.receiver.TestReceiver">
+            <intent-filter>
+                <action android:name="com.zhouwei.test" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
