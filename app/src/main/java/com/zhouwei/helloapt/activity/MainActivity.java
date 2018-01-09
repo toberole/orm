@@ -56,7 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        intent.setAction("");
 //        sendBroadcast(intent);
 //        sendStickyBroadcast();
+        View view = null;
+        view.scrollBy(0, 0);
 
+        view.scrollTo(0, 0);
     }
 
     @Override

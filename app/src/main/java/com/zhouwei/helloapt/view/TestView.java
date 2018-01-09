@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -77,7 +78,6 @@ public class TestView extends View {
         return result;
     }
 
-
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
@@ -94,5 +94,10 @@ public class TestView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Log.i("AAAA", "onDraw");
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
     }
 }

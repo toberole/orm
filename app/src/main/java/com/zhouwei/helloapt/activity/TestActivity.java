@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.zhouwei.helloapt.R;
 
+import static com.zhouwei.helloapt.R.id.get;
+
 public class TestActivity extends Activity {
     public Button btn_bindView;
 
@@ -18,6 +20,8 @@ public class TestActivity extends Activity {
         setContentView(R.layout.activity_test);
 
         Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+
+        getContentResolver().query()
     }
 
     public void bindViewOnClick(View v) {

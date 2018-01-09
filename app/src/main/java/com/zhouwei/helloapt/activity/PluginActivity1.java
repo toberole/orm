@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zhouwei.helloapt.R;
-import com.zhouwei.helloapt.plugin.PluginUtil;
+import com.zhouwei.helloapt.plugin.ResourceUtil;
 
 import java.io.File;
 
@@ -35,16 +35,16 @@ public class PluginActivity1 extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         String apkPath = Environment.getExternalStorageDirectory().toString() + File.separator + "testClassLoader.apk";
-        ApplicationInfo apkinfo = PluginUtil.getUninstallApkInfo(this, apkPath);
+        ApplicationInfo apkinfo = ResourceUtil.getUninstallApkInfo(this, apkPath);
         String packageName = null;
         if (null != apkinfo) {
             packageName = apkinfo.packageName;
         }
 
         try {
-            Resources resources = PluginUtil.getPluginResources(apkPath, PluginActivity1.this);
+            Resources resources = ResourceUtil.getPluginResources(apkPath, PluginActivity1.this);
             // , packageName, "R$drawable", "about_log"
-            int resID = PluginUtil.getResIDValue(PluginActivity1.this, apkPath, packageName, "R$drawable", "about_log");
+            int resID = ResourceUtil.getResIDValue(PluginActivity1.this, apkPath, packageName, "R$drawable", "about_log");
             Drawable drawable = resources.getDrawable(resID);
             reLayout.setBackgroundDrawable(drawable);
         } catch (Exception e) {

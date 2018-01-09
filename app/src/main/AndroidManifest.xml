@@ -21,14 +21,16 @@
         </activity>
 
         <service
-            android:name="com.zhouwei.helloapt.service.TestService"
+            android:name=".service.TestService"
             android:process="com.zhouwei.helloapt.test" />
 
-        <receiver android:name="com.zhouwei.helloapt.receiver.TestReceiver">
+        <receiver android:name=".receiver.TestReceiver">
             <intent-filter>
                 <action android:name="com.zhouwei.test" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".activity.FixBugActivity"></activity>
     </application>
 
 </manifest>

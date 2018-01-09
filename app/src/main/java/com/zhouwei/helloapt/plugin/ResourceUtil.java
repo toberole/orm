@@ -31,7 +31,7 @@ import static android.content.ContentValues.TAG;
  * Created by zhouwei on 2017/12/30.
  */
 
-public class PluginUtil {
+public class ResourceUtil {
     public static final String ADDSSETPATH = "addAssetPath";
     public static final String DEX = "dex";
 
@@ -79,7 +79,7 @@ public class PluginUtil {
 
     /**
      * @param apkPath                 被加载apk的path
-     * @param apkPackageName          {@link PluginUtil#getUninstallApkInfo} 被加载apk PackageName
+     * @param apkPackageName          {@link ResourceUtil#getUninstallApkInfo} 被加载apk PackageName
      * @param pluginResourceClassName 需要从apk里面获取的resource对应的类名称
      * @param pluginResourceIDName    需要从apk里面获取的resource对应的id名称
      * @return

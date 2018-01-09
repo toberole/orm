@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.zhouwei.helloapt.activity.TestToastAtivity">
+    tools:context="com.zhouwei.helloapt.activity.FixBugActivity">
 
     <Button
-        android:id="@+id/btn_show"
+        android:id="@+id/btn_fixbug"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="show"
-        android:text="show" />
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="FixBug" />
 
     <Button
-        android:id="@+id/btn_hide"
+        android:id="@+id/btn_hf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="hide"
-        android:text="hide" />
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="换肤" />
+
 </LinearLayout>

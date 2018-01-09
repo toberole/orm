@@ -311,6 +311,9 @@ onReceive运行在主线程【不能做耗时的操作】
 2. 有序广播
 	  广播接受者按照优先级 处理广播，广播可以被修改 可以截断终止 低优先级的广播接受者就接受不到广播了
 3. 粘性广播
+	  权限<uses-permission android:name="android.permission.BROADCAST_STICKY" />
+	  sendStickyBroadcast 发送出去之后 被所有接受者处理完毕之后还存在着 
+      除非使用removeStickyBroadcast移除
 
 # 全局广播设置成局部广播
 
@@ -321,3 +324,23 @@ onReceive运行在主线程【不能做耗时的操作】
     发送广播时指定该广播接收器所在的包名，此广播将只会发送到此包中的App内与之相匹配的有效广播接收器中。
 
 	使用封装好的LocalBroadcastManager类
+
+
+# View
+## 移动
+scrollBy / scrollTo 只能改变view的内容的位置，不能改变View的位置，内容的移动方朝向左上角方向的时候，scrollX 与scrollY取正，否则为复制。
+
+# View动画
+view动画只是对view的影像做了移动，并不能改变view的坐标值，在移动之后 点击新位置的view无法响应点击事件【移动的仅仅是view的影像位置】
+
+
+# 改变布局参数
+操作稍微复杂
+
+# View移动总结
+1. scrollTo / scrollBy 操作简单 适合对view的内容的滑动
+2. 动画 操作简单 主要适用于没有交互的View和实现复杂的动画效果
+3. 改变布局参数 操作稍微复杂 适用于有交互的view
+
+
+

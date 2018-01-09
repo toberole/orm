@@ -14,7 +14,7 @@ import dalvik.system.PathClassLoader;
  * Created by zhouwei on 2017/12/30.
  * <p>
  * 可用的
- * dx –dex –output=C:\Users\Administrator\Desktop\dex\classes2.dex C:\Users\Administrator\Desktop\dex
+ * dx --dex --output=C:\Users\Administrator\Desktop\dex\classes2.dex C:\Users\Administrator\Desktop\dex
  * <p>
  * C:\Users\Administrator\Desktop\dex\classes2.dex // 生成的dex的路径
  * <p>
