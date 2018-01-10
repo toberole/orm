@@ -34,12 +34,11 @@ public class TestActivity extends Activity {
 
         View view = null;
         Activity activity = null;
-<<<<<<< HEAD
+
+        
         ///////////////////////////计算机/////////////////////////////
 
         ////////////////////////////*************/////////////////////////
-=======
->>>>>>> parent of 159024c... test03
     }
 
     public void bindViewOnClick(View v) {
