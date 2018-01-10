@@ -35,6 +35,8 @@ public class TestActivity extends Activity {
         View view = null;
         Activity activity = null;
         ///////////////////////////计算机/////////////////////////////
+
+        ////////////////////////////*************/////////////////////////
     }
 
     public void bindViewOnClick(View v) {
