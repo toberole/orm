@@ -60,7 +60,7 @@ public class ResourceUtil {
      * @param apkPath
      * @return 得到对应插件的Resource对象
      */
-    public static Resources getPluginResources(String apkPath, Context context) {
+    public static Resources getResources(String apkPath, Context context) {
         try {
             AssetManager assetManager = AssetManager.class.newInstance();
             //反射调用方法addAssetPath(String path)

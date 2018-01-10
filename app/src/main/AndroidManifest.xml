@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TestToastAtivity">
+        <activity android:name=".activity.TestViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +30,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.FixBugActivity"></activity>
+        <!--<activity android:name=".activity.FixBugActivity" />-->
+        <!--<activity android:name=".activity.TestViewActivity"></activity>-->
     </application>
 
 </manifest>

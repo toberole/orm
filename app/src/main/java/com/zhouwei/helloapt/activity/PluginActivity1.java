@@ -42,7 +42,7 @@ public class PluginActivity1 extends AppCompatActivity implements View.OnClickLi
         }
 
         try {
-            Resources resources = ResourceUtil.getPluginResources(apkPath, PluginActivity1.this);
+            Resources resources = ResourceUtil.getResources(apkPath, PluginActivity1.this);
             // , packageName, "R$drawable", "about_log"
             int resID = ResourceUtil.getResIDValue(PluginActivity1.this, apkPath, packageName, "R$drawable", "about_log");
             Drawable drawable = resources.getDrawable(resID);

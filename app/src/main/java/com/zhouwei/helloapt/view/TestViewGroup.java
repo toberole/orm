@@ -2,13 +2,14 @@ package com.zhouwei.helloapt.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
+import android.view.MotionEvent;
+import android.widget.LinearLayout;
 
 /**
  * Created by zhouwei on 2017/12/31.
  */
 
-public class TestViewGroup extends ViewGroup {
+public class TestViewGroup extends LinearLayout {
     public TestViewGroup(Context context) {
         super(context);
     }
@@ -26,8 +27,9 @@ public class TestViewGroup extends ViewGroup {
 
     }
 
+
     @Override
-    protected LayoutParams generateLayoutParams(LayoutParams p) {
-        return super.generateLayoutParams(p);
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
     }
 }
