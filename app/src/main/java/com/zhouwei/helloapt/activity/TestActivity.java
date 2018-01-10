@@ -34,6 +34,9 @@ public class TestActivity extends Activity {
 
         View view = null;
         Activity activity = null;
+
+
+        ////test001
     }
 
     public void bindViewOnClick(View v) {
