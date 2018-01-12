@@ -36,8 +36,7 @@ public class TestActivity extends Activity {
         Activity activity = null;
 
 
-        ////test001
-        ////test002
+
     }
 
     public void bindViewOnClick(View v) {

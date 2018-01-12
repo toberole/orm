@@ -343,4 +343,49 @@ view动画只是对view的影像做了移动，并不能改变view的坐标值�
 3. 改变布局参数 操作稍微复杂 适用于有交互的view
 
 
+# ViewGroup派发Touch事件：
+在dispatchTouchEvent方法里面处理 ，首先会调用onInterceptTouchEvent判断是否拦截事件，如果拦截事件了，Touch事件就不会交给子View处理。如果没有拦截就交给子View处理，如果子View都不处理 ，最后事件还是会返回到ViewGroup，此时ViewGroup调用自己的TouchListener里面的onTouch，如果TouchListener为空或者是onTouch方法没有消费touch事件，那么会再调用onTouchEvent方法，在onTouchEvent方法里面会派发longClick或者click。
+
+
+adb shell下使用getprop可以查看当前系统的属性值
+
+在service_manager.c main方法里面可以看到binder相关的启动
+<pre>
+
+int main(int argc, char **argv)
+{
+    struct binder_state *bs;
+    void *svcmgr = BINDER_SERVICE_MANAGER;
+
+    bs = binder_open(128*1024);
+
+    if (binder_become_context_manager(bs)) {
+        ALOGE("cannot become context manager (%s)\n", strerror(errno));
+        return -1;
+    }
+
+    svcmgr_handle = svcmgr;
+    binder_loop(bs, svcmgr_handler);
+    return 0;
+}
+
+</pre>
+
+Linux系统里面有3中不同类型的用户可以对文件或者是目录进行访问：文件所有者、同组用户、其他用户。
+
+
+
+AXMLprinter2 是一款将AXML转换为可读的xml文件的工具
+java -jar AXMLprinter2.jar  xxx.xml output.xml
+
+反汇编工具 IDA PRO、radare、smiasm
+
+
+smail语言是对Dalvik虚拟机字节码的一种解释。baksmail可以反编译smail语言
+
+
+
+
+
+
 
