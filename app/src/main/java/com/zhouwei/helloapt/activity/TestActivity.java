@@ -36,7 +36,12 @@ public class TestActivity extends Activity {
         Activity activity = null;
 
 
+        view.post(new Runnable() {
+            @Override
+            public void run() {
 
+            }
+        });
     }
 
     public void bindViewOnClick(View v) {

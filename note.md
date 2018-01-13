@@ -380,8 +380,24 @@ java -jar AXMLprinter2.jar  xxx.xml output.xml
 
 反汇编工具 IDA PRO、radare、smiasm
 
-
 smail语言是对Dalvik虚拟机字节码的一种解释。baksmail可以反编译smail语言
+
+ViewRootImpl是联接WindowManager和DecorView的纽带，View的绘制三大流程都是从ViewRoot触发开始的。
+
+对于DecorView，其MeasureSpec由窗口的尺寸和其自身的LayoutPrams来共同确定；对于普通View，其MeasureSpec由父容器的MesaureSpec和自身的LayoutParams来共同决定。
+
+在ViewGroup的getChildMeasureSpec里面可以查看子View的MeasureSpec的生成规则
+
+
+View的测量宽度和高度在Measure中形成的，View的最终宽高在layout中形成的
+
+
+
+
+
+
+
+
 
 
 
