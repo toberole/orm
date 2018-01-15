@@ -14,7 +14,7 @@ public class TestViewGroupActivity extends AppCompatActivity {
 
     private int width;
     private int height;
-    private com.zhouwei.helloapt.view.MyViewPager mvp;
+    private MyViewPager mvp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,8 @@ public class TestViewGroupActivity extends AppCompatActivity {
         height = displayMetrics.heightPixels;
 
         initViewPager();
+
+        getClassLoader();
     }
 
     private void initViewPager() {

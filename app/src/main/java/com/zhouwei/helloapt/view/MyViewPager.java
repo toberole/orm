@@ -110,7 +110,7 @@ public class MyViewPager extends ViewGroup {
             default:
                 break;
         }
-        
+
         lastX = x;
         lastY = y;
         return true;
