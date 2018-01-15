@@ -391,6 +391,31 @@ ViewRootImpl是联接WindowManager和DecorView的纽带，View的绘制三大流
 
 View的测量宽度和高度在Measure中形成的，View的最终宽高在layout中形成的
 
+# 自定义View的注意事项：
+
+1、让View支持 wrap_content，如果不自己处理 wrap_content,那么即时view使用的是wrap_content，实际的效果也是match_parent
+
+2、如果需要 让view支padding，继承自view的需要在draw方法里面处理，继承自ViewGroup的控件需要在onMeasure和onLayout中考虑padding和子元素的margin对其造成的影响，不然将导致padding和子元素的margin失效。
+
+3、尽量不要在view里面使用handler，view内部提供了post系列的方法，可以代替handler的作用。
+
+4、View中如果有线程或者动画，需要及时终止。可以在onDetachedFromWindow是一个很好的机会。当包含此View的Activity退出或者当前View被remove时，View的onDetachedFromWindow方法会被调用，和此方法对应的是onAttachedToWindow,当包含此View的Activity启动时，View的onAttachedToWindow方法会被调用。同时，当View变得不可见时我们也需要停止线程和动画，如果不及时处理这种问题，有可能会造成内存泄漏。
+
+5、View带有滑动嵌套情形时，需要处理滑动冲突。
+
+# 自定义View
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

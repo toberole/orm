@@ -4,10 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.zhouwei.helloapt.activity.TestViewActivity">
 
     <com.zhouwei.helloapt.view.TestViewGroup
         android:id="@+id/tvg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+
+    <com.zhouwei.helloapt.view.CircleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:padding="20dp"
+        app:color="@color/circle_color" />
 </LinearLayout>
