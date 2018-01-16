@@ -3,7 +3,6 @@
     package="com.zhouwei.helloapt">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -15,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.BarrageActivity"
+            android:name=".activity.Barrage2Activity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +36,8 @@
         <!-- <activity android:name=".activity.FixBugActivity" /> -->
         <!-- <activity android:name=".activity.TestViewActivity"></activity> -->
         <!-- <activity android:name=".activity.TestViewGroupActivity"></activity> -->
-        <!--<activity android:name=".activity.BarrageActivity"></activity>-->
+        <!-- <activity android:name=".activity.BarrageActivity"></activity> -->
+<!--        <activity android:name=".activity.Barrage2Activity"></activity>-->
     </application>
 
 </manifest>
