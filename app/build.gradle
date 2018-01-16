@@ -38,7 +38,6 @@ dependencies {
 
     // MultiDex的依赖
     //compile 'com.android.support:multidex:1.0.0'
-    
 
 
     compile 'com.android.support:appcompat-v7:26.+'

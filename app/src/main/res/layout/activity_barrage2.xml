@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.zhouwei.helloapt.activity.Barrage2Activity">
 
-    <com.zhouwei.helloapt.barrage.BarrageView
+    <com.zhouwei.helloapt.view.barrage.BarrageView
         android:id="@+id/bv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

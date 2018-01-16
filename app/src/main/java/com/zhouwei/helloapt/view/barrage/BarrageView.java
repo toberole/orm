@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt.barrage;
+package com.zhouwei.helloapt.view.barrage;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

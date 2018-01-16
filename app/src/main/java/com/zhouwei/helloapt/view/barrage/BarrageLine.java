@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt.barrage;
+package com.zhouwei.helloapt.view.barrage;
 
 import android.content.Context;
 import android.os.Handler;
@@ -7,9 +7,11 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -31,6 +33,8 @@ public class BarrageLine extends FrameLayout {
     private int mWidth;
     private int PADDING = 20;
     private int HEIGHT = 100;
+
+    private Random random = new Random();
 
     public static Executor mExecutor = Executors.newCachedThreadPool();
 
@@ -54,7 +58,6 @@ public class BarrageLine extends FrameLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-
         flutter();
     }
 
@@ -128,11 +131,17 @@ public class BarrageLine extends FrameLayout {
      * 给每一行添加view
      */
     private void addNextView() {
-        if (mQueue.isEmpty())
+        if (mQueue.isEmpty()) {
             return;
+        }
         View view = mQueue.poll();
         view.measure(0, 0);
-        view.setTag(view.getMeasuredWidth());
+
+        // 控制一行当中两个相邻弹幕之间的距离
+        int width = view.getMeasuredWidth();
+        int interval = (random.nextInt(100) + 1) * (random.nextInt(200) + 1) % width + width;
+        Log.i("AAAA", "interval: " + interval);
+        view.setTag(interval);
         addView(view);
         view.setTranslationX(mWidth);
     }

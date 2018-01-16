@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.zhouwei.helloapt.R;
-import com.zhouwei.helloapt.barrage.BarrageView;
+import com.zhouwei.helloapt.view.barrage.BarrageView;
 
 public class Barrage2Activity extends AppCompatActivity {
 
