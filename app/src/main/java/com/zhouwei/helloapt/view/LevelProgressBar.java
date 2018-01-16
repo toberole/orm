@@ -168,8 +168,15 @@ public class LevelProgressBar extends ProgressBar {
 
         int lineY = textHeight + progressHeight / 2 + dpTopx(10);
 
+        /**
+         * 进度条是由上下两层叠加而成的
+         * 底层表示总的进度
+         * 上层表示当前的进度
+         */
+
         // 绘制进度条底部
         mPaint.setColor(progressBgColor);
+        // 设置绘制直线的两端为圆形
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(progressHeight);
         canvas.drawLine(0 + progressHeight / 2, lineY, mTotalWidth - progressHeight / 2, lineY, mPaint);
@@ -179,9 +186,7 @@ public class LevelProgressBar extends ProgressBar {
         if (reachedPartEnd > 0) {
             mPaint.setStrokeCap(Paint.Cap.ROUND);
             // 设置进度条的渐变色
-            Shader shader = new LinearGradient(0, lineY,
-                    getWidth(), lineY,
-                    progressStartColor, progressEndColor, Shader.TileMode.REPEAT);
+            Shader shader = new LinearGradient(0, lineY, getWidth(), lineY, progressStartColor, progressEndColor, Shader.TileMode.REPEAT);
             mPaint.setShader(shader);
             int accurateEnd = reachedPartEnd - progressHeight / 2;
             int accurateStart = 0 + progressHeight / 2;
