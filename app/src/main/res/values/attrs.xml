@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CircleView_Attrs">
+    <declare-styleable name="CircleView">
         <attr name="width" format="integer" />
         <attr name="color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="LevelProgressBar">
-        <attr name="levelTextSize" format="dimension"/>
-        <attr name="levelTextChooseColor" format="color"/>
-        <attr name="levelTextUnChooseColor" format="color"/>
-        <attr name="progressStartColor" format="color"/>
-        <attr name="progressEndColor" format="color"/>
-        <attr name="progressBgColor" format="color"/>
-        <attr name="progressHeight" format="dimension"/>
+        <attr name="levelTextSize" format="dimension" />
+        <attr name="levelTextChooseColor" format="color" />
+        <attr name="levelTextUnChooseColor" format="color" />
+        <attr name="progressStartColor" format="color" />
+        <attr name="progressEndColor" format="color" />
+        <attr name="progressBgColor" format="color" />
+        <attr name="progressHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="LockScreenViewGroup">
+        <attr name="smallRadius" format="dimension" />
+        <attr name="bigRadius" format="dimension" />
+        <attr name="normalColor" format="color" />
+        <attr name="rightColor" format="color" />
+        <attr name="wrongColor" format="color" />
+        <attr name="itemCount" format="integer" />
     </declare-styleable>
 </resources>

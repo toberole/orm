@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhouwei.helloapt.view.LockScreenViewGroup
+        android:id="@+id/lockScreenViewGroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:bigRadius="16dp"
+        app:normalColor="#666666"
+        app:rightColor="#33FF66"
+        app:smallRadius="8dp"
+        app:wrongColor="#FF3333" />
+
+</LinearLayout>

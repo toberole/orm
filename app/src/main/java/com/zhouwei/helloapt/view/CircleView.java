@@ -40,8 +40,8 @@ public class CircleView extends View {
     }
 
     private void initProperty(Context context, AttributeSet attrs, int defStyleAttr) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleView_Attrs);
-        color = typedArray.getColor(R.styleable.CircleView_Attrs_color, Color.GREEN);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleView);
+        color = typedArray.getColor(R.styleable.CircleView_color, Color.GREEN);
         typedArray.recycle();
     }
 

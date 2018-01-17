@@ -386,8 +386,7 @@ ViewRootImpl是联接WindowManager和DecorView的纽带，View的绘制三大流
 
 对于DecorView，其MeasureSpec由窗口的尺寸和其自身的LayoutPrams来共同确定；对于普通View，其MeasureSpec由父容器的MesaureSpec和自身的LayoutParams来共同决定。
 
-在ViewGroup的getChildMeasureSpec里面可以查看子View的MeasureSpec的生成规则
-
+# 在ViewGroup的getChildMeasureSpec里面可以查看子View的MeasureSpec的生成规则
 
 View的测量宽度和高度在Measure中形成的，View的最终宽高在layout中形成的
 
@@ -395,7 +394,7 @@ View的测量宽度和高度在Measure中形成的，View的最终宽高在layou
 
 1、让View支持 wrap_content，如果不自己处理 wrap_content,那么即时view使用的是wrap_content，实际的效果也是match_parent
 
-2、如果需要 让view支padding，继承自view的需要在draw方法里面处理，继承自ViewGroup的控件需要在onMeasure和onLayout中考虑padding和子元素的margin对其造成的影响，不然将导致padding和子元素的margin失效。
+2、如果需要 让view支padding，继承自view的需要在draw方法里面处理，继承自ViewGroup的控件需要在onMeasure和onLayout中考虑padding和子元素的margin对其造成的影响，不然将导致padding和子元素的margin失效。一定要注意padding也是View的内容，padding也会占据view的空间，在计算坐标 draw的时候要注意。
 
 3、尽量不要在view里面使用handler，view内部提供了post系列的方法，可以代替handler的作用。
 
