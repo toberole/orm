@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -13,22 +14,23 @@ import com.zhouwei.helloapt.R;
 
 /**
  * Created by zhouwei on 2018/1/17.
- * 倒计时View
  */
 public class CountDownTimerView extends android.support.v7.widget.AppCompatTextView implements View.OnClickListener {
     private final static String TAG = CountDownTimerView.class.getSimpleName();
     private final static int CountDown_MSG = 1;
 
-    private boolean isNeedStart = true;
+    private boolean isCounting = false;
 
-    private int countDownInterval = 1000;
-    private int millisInFuture = countDownInterval * 60;
-    private int totalCount = millisInFuture / countDownInterval;
+    public int countDownInterval = 1000;
+    public int intervalCount = 30;
+    private int totalCount = intervalCount;
 
-    private String originStr_0 = "获取验证码";
-    private String originStr = "%s秒之后可以重发";
+    public String hintText = "获取验证码";
+    public String text = "%s秒之后重发";
 
     private CountDownTimerHandler handler;
+
+    private ClickListener clickListener;
 
     public CountDownTimerView(Context context) {
         this(context, null);
@@ -46,11 +48,100 @@ public class CountDownTimerView extends android.support.v7.widget.AppCompatTextV
 
     private void obtainStyledAttributes(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CountDownTimerView);
-        originStr_0 = a.getString(R.styleable.CountDownTimerView_originStr_0);
-        originStr = a.getString(R.styleable.CountDownTimerView_originStr);
+
         countDownInterval = a.getInt(R.styleable.CountDownTimerView_countDownInterval, countDownInterval);
-        millisInFuture = a.getInt(R.styleable.CountDownTimerView_millisInFuture, millisInFuture);
-        totalCount = millisInFuture / countDownInterval;
+        intervalCount = a.getInt(R.styleable.CountDownTimerView_intervalCount, intervalCount);
+        totalCount = intervalCount;
+
+        String txt = String.valueOf(getHint()) + "";
+        if (!TextUtils.isEmpty(txt)) {
+            hintText = txt;
+        }
+
+        txt = String.valueOf(getText()) + "";
+        if (!TextUtils.isEmpty(txt)) {
+            text = txt;
+        }
+
+        Log.i(TAG, "hint: " + hintText + " text: " + text);
+    }
+
+    private void init() {
+        setHint(hintText);
+        setText("");
+        setEnabled(true);
+        setClickable(true);
+        setOnClickListener(this);
+        handler = new CountDownTimerHandler();
+    }
+
+    public void addClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.i(TAG, "onClick");
+
+        if (null != clickListener) {
+            clickListener.onClick(v);
+        }
+    }
+
+    public synchronized void start() {
+        Log.i(TAG, "start");
+        if (!isCounting) {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    isCounting = true;
+                    handler.sendMessage(handler.obtain(CountDown_MSG));
+                    setEnabled(false);
+                    setClickable(false);
+                }
+            });
+        }
+    }
+
+    public synchronized void restart() {
+        Log.i(TAG, "restart");
+        cancle();
+        if (!isCounting) {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    isCounting = true;
+                    handler.sendMessage(handler.obtain(CountDown_MSG));
+                    setEnabled(false);
+                    setClickable(false);
+                }
+
+            });
+        }
+    }
+
+    public void stop() {
+        Log.i(TAG, "stop");
+        cancle();
+    }
+
+    public synchronized void cancle() {
+        Log.i(TAG, "cancle");
+        if (isCounting) {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    handler.removeMessages(CountDown_MSG);
+                    isCounting = false;
+                    setEnabled(true);
+                    setClickable(true);
+                    setHint(hintText);
+                    setText("");
+                    totalCount = intervalCount;
+                }
+
+            });
+        }
     }
 
     private class CountDownTimerHandler extends Handler {
@@ -63,92 +154,28 @@ public class CountDownTimerView extends android.support.v7.widget.AppCompatTextV
             super.handleMessage(msg);
 
             if (totalCount >= 0) {
-                setText(String.format(originStr, totalCount));
+                setText(String.format(text, totalCount));
                 totalCount--;
                 sendMessageDelayed(obtain(CountDown_MSG), countDownInterval);
             } else {
-                isNeedStart = true;
+                isCounting = false;
+                setEnabled(true);
                 setClickable(true);
-                setText(originStr_0);
-                totalCount = millisInFuture / countDownInterval;
+                setText("");
+                setHint(hintText);
+                totalCount = intervalCount;
             }
         }
     }
 
-    private void init() {
-        setText(originStr_0);
-        setClickable(true);
-        setOnClickListener(this);
-        handler = new CountDownTimerHandler();
+    public interface ClickListener {
+        void onClick(View v);
     }
 
     @Override
-    public void onClick(View v) {
-        Log.i(TAG, "onClick");
-        if (isNeedStart) {
-            start();
-        }
-    }
-
-    /**
-     * 开始倒计时
-     */
-    public synchronized void start() {
-        Log.i(TAG, "start");
-        if (isNeedStart) {
-            isNeedStart = false;
-            handler.sendMessage(handler.obtain(CountDown_MSG));
-            setClickable(false);
-        }
-    }
-
-    /**
-     * 重新开始倒计时
-     */
-    public synchronized void restart() {
-        Log.i(TAG, "restart");
-        if (isNeedStart) {
-            isNeedStart = false;
-            //timer.start();
-            handler.sendEmptyMessage(0);
-            setClickable(false);
-        }
-    }
-
-
-    public synchronized void cancle() {
-        Log.i(TAG, "cancle");
-        if (!isNeedStart) {
-            isNeedStart = true;
-            setClickable(true);
-            setText(originStr_0);
-            totalCount = millisInFuture / countDownInterval;
-            handler.removeMessages(CountDown_MSG);
-        }
-    }
-
-
-    public long getCountDownInterval() {
-        return countDownInterval;
-    }
-
-    public void setCountDownInterval(int countDownInterval) {
-        this.countDownInterval = countDownInterval;
-    }
-
-    public long getMillisInFuture() {
-        return millisInFuture;
-    }
-
-    public void setMillisInFuture(int millisInFuture) {
-        this.millisInFuture = millisInFuture;
-    }
-
-    public String getOriginStr() {
-        return originStr;
-    }
-
-    public void setOriginStr(String originStr) {
-        this.originStr = originStr;
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        handler.removeMessages(CountDown_MSG);
+        handler = null;
     }
 }

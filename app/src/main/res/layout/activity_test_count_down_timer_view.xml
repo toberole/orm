@@ -8,11 +8,17 @@
     tools:context="com.zhouwei.helloapt.activity.TestCountDownTimerViewActivity">
 
     <com.zhouwei.helloapt.view.CountDownTimerView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_verify"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:clickable="true"
         android:gravity="center"
+        android:hint="获取验证码"
+        android:text="%s秒之后重发"
+        android:textColorHint="#FFFFFF"
+        android:textSize="12dp"
+        android:textStyle="bold"
         app:countDownInterval="1000"
-        app:millisInFuture="10000"
-        app:originStr="%s秒之后可以重发"
-        app:originStr_0="获取验证码" />
+        app:intervalCount="30" />
 </LinearLayout>
