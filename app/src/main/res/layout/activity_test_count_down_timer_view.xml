@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     android:gravity="center"
     tools:context="com.zhouwei.helloapt.activity.TestCountDownTimerViewActivity">
 
     <com.zhouwei.helloapt.view.CountDownTimerView
-        android:id="@+id/tv_verify"
+        android:id="@+id/ctv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
