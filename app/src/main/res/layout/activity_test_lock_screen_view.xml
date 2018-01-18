@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.zhouwei.helloapt.view.LockScreenViewGroup
+    <com.zhouwei.helloapt.view.lock_screen_view.LockScreenViewGroup
         android:id="@+id/lockScreenViewGroup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

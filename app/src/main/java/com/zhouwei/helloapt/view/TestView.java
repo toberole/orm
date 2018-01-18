@@ -30,6 +30,9 @@ public class TestView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         Log.i("AAAA", "onMeasure");
 
+        int width = getWidth();
+        int height = getHeight();
+
         // 或者直接调用父类的setMeasuredDimension(),因为父类的onMeasure()最终调用了setMeasuredDimension()
         setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));
     }

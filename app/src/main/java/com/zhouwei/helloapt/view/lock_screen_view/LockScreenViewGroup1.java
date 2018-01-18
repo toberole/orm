@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt.view;
+package com.zhouwei.helloapt.view.lock_screen_view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

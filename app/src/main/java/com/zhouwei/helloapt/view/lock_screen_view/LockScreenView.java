@@ -1,4 +1,4 @@
-package com.zhouwei.helloapt.view;
+package com.zhouwei.helloapt.view.lock_screen_view;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TestLockScreenViewActivity">
+        <activity android:name=".activity.TestRefreshableViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +37,10 @@
         <!-- <activity android:name=".activity.BarrageActivity"></activity> -->
         <!-- <activity android:name=".activity.Barrage2Activity"></activity> -->
         <!-- <activity android:name=".activity.TestLevelProgressBarActivity"></activity> -->
-        <!--<activity android:name=".activity.TestLockScreenViewActivity"></activity>-->
-    </application>
+        <!-- <activity android:name=".activity.TestLockScreenViewActivity"></activity> -->
+        <!-- <activity android:name=".activity.TestCountDownTimerViewActivity"></activity> -->
+       <!-- <activity android:name=".activity.TestShapeActivity" />
+        <activity android:name=".activity.TestRefreshableViewActivity"></activity>
+   --> </application>
 
 </manifest>

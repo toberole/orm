@@ -23,4 +23,11 @@
         <attr name="wrongColor" format="color" />
         <attr name="itemCount" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="CountDownTimerView">
+        <attr name="originStr_0" format="string" />
+        <attr name="originStr" format="string" />
+        <attr name="countDownInterval" format="integer" />
+        <attr name="millisInFuture" format="integer" />
+    </declare-styleable>
 </resources>
