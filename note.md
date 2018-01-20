@@ -405,10 +405,87 @@ View的测量宽度和高度在Measure中形成的，View的最终宽高在layou
 # 自定义View
 
 
+# android studio JNI开发
 
+<pre>
 
+ 1.在Java类中声明一个本地方法
 
+2.运行javah以获得包含该方法的C声明的头文件
 
+3.用C实现该本地方法
+
+4.将代码置于共享库中
+
+5.在Java程序中加载该类库
+
+</pre>
+
+配置android studio External Tools工具：javah 、ndk-build、ndk-build clean命令，配置之后方便使用，不配置也可以。
+
+第一步：
+1、新建一个工程
+2、在工程的app目录上 ，点击右键，选择Folder 新建JNI Folder
+3、修改app下的build.gradle
+<pre>
+	在defaultConfig下面配置
+	
+        ndk{
+            moduleName "nativeTest"// 名字必须与 System.loadLibrary("nativeTest");必须一致
+        }
+
+        sourceSets.main{
+            jni.srcDirs = []
+            jniLibs.srcDir "src/main/libs"
+        }
+	
+</pre>
+
+4、如果使用的是旧版本的NDK，那么需要修改工程下面的gradle.properties文件（如果没有此文件，自己新建一个），添加android.useDeprecatedNdk=true
+
+5、新建一个java class文件
+<pre>
+
+public class JNISample {
+    static {
+        System.loadLibrary("MyLibrary");
+    }
+
+    public native int add(int a, int b);
+}
+
+</pre>
+
+6、使用javah生成 .h头文件
+打开cmd ，切到app/src/main/java 目录下
+执行：javah -d [生成.h文件的目录] 被用来生成.h文件的java class全限定名
+
+7、执行完成后jni目录下就创建了.h文件，然后在jni目录下编写 MyLibrary.cpp、Android.mk、Application.mk这三个文件【单独使用ndk编译生成so的时候需要这些文件】，利用android studio可以不写这些文件，但是配置正确。
+
+<pre>
+Android.mk文件
+
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := MyLibrary # 生成so的名字
+LOCAL_SRC_FILES =: MyLibrary.cpp
+include $(BUILD_SHARED_LIBRARY)
+
+</pre>
+
+<pre>
+Application.mk文件
+
+APP_MODULES := MyLibrary #LOCAL_MODULE与APP_MODULES需要一致
+APP_ABI := all
+
+</pre>
+
+8、cmd且到jni目录下面 执行ndk-build
+
+# 注意 android studio的so库默认需要放在jnilibs目录下面
 
 
 

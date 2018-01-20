@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TestCountDownTimerViewActivity">
+        <activity android:name=".activity.LiveActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,8 +39,11 @@
         <!-- <activity android:name=".activity.TestLevelProgressBarActivity"></activity> -->
         <!-- <activity android:name=".activity.TestLockScreenViewActivity"></activity> -->
         <!-- <activity android:name=".activity.TestCountDownTimerViewActivity"></activity> -->
-       <!-- <activity android:name=".activity.TestShapeActivity" />
+        <!--
+        <activity android:name=".activity.TestShapeActivity" />
         <activity android:name=".activity.TestRefreshableViewActivity"></activity>
-   --> </application>
+        -->
+       <!-- <activity android:name=".activity.LiveActivity"></activity>-->
+    </application>
 
 </manifest>

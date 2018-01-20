@@ -1,1 +1,3 @@
-include ':app', ':apt', ':anno', ':api'
+include ':app'
+include ':anno'
+include ':api'
