@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.LiveActivity">
+        <activity android:name=".activity.ProgressTextViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +43,8 @@
         <activity android:name=".activity.TestShapeActivity" />
         <activity android:name=".activity.TestRefreshableViewActivity"></activity>
         -->
-       <!-- <activity android:name=".activity.LiveActivity"></activity>-->
+        <!-- <activity android:name=".activity.LiveActivity"></activity> -->
+        <!--<activity android:name=".activity.ProgressTextViewActivity"></activity>-->
     </application>
 
 </manifest>
