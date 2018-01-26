@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.zhouwei.helloapt"
         minSdkVersion 15
@@ -39,7 +39,7 @@ dependencies {
     // MultiDex的依赖
     //compile 'com.android.support:multidex:1.0.0'
 
-
+    compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     compile 'com.github.ctiao:DanmakuFlameMaster:0.5.3'

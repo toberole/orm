@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ProgressTextViewActivity">
+        <activity android:name=".activity.TestRecyclerViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,7 +44,9 @@
         <activity android:name=".activity.TestRefreshableViewActivity"></activity>
         -->
         <!-- <activity android:name=".activity.LiveActivity"></activity> -->
-        <!--<activity android:name=".activity.ProgressTextViewActivity"></activity>-->
+        <!-- <activity android:name=".activity.ProgressTextViewActivity"></activity> -->
+        <!-- <activity android:name=".activity.DTProgressActivity"></activity> -->
+       <!-- <activity android:name=".activity.TestRecyclerViewActivity"></activity>-->
     </application>
 
 </manifest>
