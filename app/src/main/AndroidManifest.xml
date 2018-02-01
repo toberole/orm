@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.TestIndicatorActivity">
+        <activity android:name=".activity.TestIndicatorActivity"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +50,8 @@
         <!-- <activity android:name=".activity.DTProgressActivity"></activity> -->
         <!-- <activity android:name=".activity.TestRecyclerViewActivity"></activity> -->
         <!-- <activity android:name=".activity.TestTransitionDrawableActivity" /> -->
-        <!--<activity android:name=".activity.TestIndicatorActivity"></activity>-->
+        <!-- <activity android:name=".activity.TestIndicatorActivity"></activity> -->
+        <!--<activity android:name=".activity.Test_NEW_TASK_Activity"></activity>-->
     </application>
 
 </manifest>
