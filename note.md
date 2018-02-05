@@ -201,7 +201,7 @@ on late-init
     trigger boot
 </pre>
 
-3 Zygote会执行一个app_process下面的 app_main.cpp可执行文件，在这个文件中首先添加了Android运行时环境，在Android运行时中调用了ZygoteInit.java，这就从c++代码跳到了java代码。
+3 Zygote会执行一个app\_process下面的 app\_main.cpp可执行文件，在这个文件中首先添加了Android运行时环境，在Android运行时中调用了ZygoteInit.java，这就从c++代码跳到了java代码。
 <pre>
 // 从c++代码跳到了java代码
 runtime.start("com.android.internal.os.ZygoteInit",
