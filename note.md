@@ -489,6 +489,12 @@ APP_ABI := all
 
 
 
+# Android可执行文件之谜 - DEX与ODEX
+
+
+
+
+
 
 
 
